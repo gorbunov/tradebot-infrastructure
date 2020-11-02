@@ -32,7 +32,7 @@
 - name: add my user
   user:
     name: "{{ item }}"
-    groups: sudo
+    groups: "sudo,root,docker"
     shell: /bin/bash
   loop:
     - gorbunov
