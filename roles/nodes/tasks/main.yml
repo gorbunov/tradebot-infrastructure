@@ -1,0 +1,16 @@
+---
+- name: Deploy app stack
+  docker_stack:
+    name: "{{ app_stack_name }}"
+    with_registry_auth: true
+    resolve_image: never
+    compose:
+      - version: '3'
+        services:
+          redis:
+            image: redis:latest
+            networks:
+              - appnet
+        networks:
+          appnet:
+            external: true

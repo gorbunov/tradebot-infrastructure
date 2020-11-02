@@ -1,0 +1,22 @@
+---
+- name: Init swarm mode
+  docker_swarm:
+    state: present
+    advertise_addr: "{{ swarm_advertise_addr }}"
+
+- name: Create docker ingress network
+  docker_network:
+    name: traefiknet
+    driver: overlay
+
+- name: Create app network
+  docker_network:
+    name: appnet
+    driver: overlay
+
+- name: Login to dockerhub
+  docker_login:
+    username: "{{ dockerhub_username }}"
+    password: "{{ dockerhub_password }}"
+
+- include_tasks: stacks/site.yml

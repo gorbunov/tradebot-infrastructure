@@ -1,0 +1,51 @@
+---
+- name: Add prereqisites
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - gnupg-agent
+
+- name: Add docker repo gpg key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+
+- name: Add docker repo itself
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+
+- name: Install docker and its requirements
+  apt:
+    name:
+      - docker-ce
+      - python3-pip
+
+- name: Add docker reqs for controlling with ansible
+  pip:
+    name:
+      - docker
+      - jsondiff
+      - pyyaml
+
+- name: add my user
+  user:
+    name: "{{ item }}"
+    groups: sudo
+    shell: /bin/bash
+  loop:
+    - gorbunov
+    - circleci
+
+- name: add my authorized keys
+  authorized_key:
+    user: "{{ item.username }}"
+    key: "{{ item.key }}"
+  loop:
+    - username: gorbunov
+      key: https://github.com/gorbunov.keys
+    - username: circleci
+      key: "{{ lookup('file', 'keys/circleci.pub') }}"
+
+
