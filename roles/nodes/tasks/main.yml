@@ -14,18 +14,18 @@
           tradeview-listener:
             image: ogorbunov/tradebot:tradeview-listener-latest
             environment:
-              APP_ENV: production
-              APP_DEBUG: true
-              APP_HOST: 0.0.0.0
+              APP_ENV: 'production'
+              APP_DEBUG: 1
+              APP_HOST: '0.0.0.0'
               APP_PORT: 80
-              APP_TIMEZONE: UTC
-              DNS_RESOLVER_HOST: 127.0.0.11
-              DB_HOSTNAME: database
+              APP_TIMEZONE: 'UTC'
+              DNS_RESOLVER_HOST: '127.0.0.11'
+              DB_HOSTNAME: 'database'
               DB_PORT: 3306
-              DB_USERNAME: user
-              DB_PASSWORD: password
-              DB_DATABASE: database
-              REDIS_HOST: redis
+              DB_USERNAME: 'user'
+              DB_PASSWORD: 'password'
+              DB_DATABASE: 'database'
+              REDIS_HOST: 'redis'
               REDIS_PORT: 6379
             networks:
               - appnet
