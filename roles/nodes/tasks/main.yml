@@ -33,7 +33,7 @@
             deploy:
               labels:
                 - "traefik.enable=true"
-                - "traefik.http.routers.tradeview-listener.rule=Host(`tradingview`.{{base_hostname}}`)"
+                - "traefik.http.routers.tradeview-listener.rule=Host(`tradingview.{{base_hostname}}`)"
                 - "traefik.http.routers.tradeview-listener.entrypoints=websecure"
                 - "traefik.http.routers.tradeview-listener.tls.certresolver=tlsresolver"
                 - "traefik.http.services.tradeview-listener-service.loadbalancer.server.port=8080"
