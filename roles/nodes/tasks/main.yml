@@ -27,8 +27,8 @@
               DB_DATABASE: 'database'
               REDIS_HOST: 'redis'
               REDIS_PORT: 6379
-            expose:
-              - "8080"
+            ports:
+              - 8080:8080
             networks:
               - appnet
               - traefiknet
@@ -36,6 +36,8 @@
               labels:
                 - "traefik.enable=true"
                 - "traefik.http.routers.tradeview-listener.rule=Host(`tradeview.{{base_hostname}}`)"
+                - "traefik.http.routers.tradeview-listener.entrypoints=websecure"
+                - "traefik.http.routers.tradeview-listener.tls.certresolver=tlsresolver"
                 - "traefik.http.services.tradeview-listener-service.loadbalancer.server.port=8080"
         networks:
           appnet:
