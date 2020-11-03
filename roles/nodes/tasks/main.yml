@@ -11,6 +11,17 @@
             image: redis:latest
             networks:
               - appnet
+          tradeview-listener:
+            image: ogorbunov/tradebot:tradeview-listener-latest
+            networks:
+              - appnet
+            labels:
+              - "traefik.enable=true"
+              - "traefik.http.routers.tradeview-listener.rule=Host(`tradeview.{{base_hostname}}`)"
+              - "traefik.http.routers.tradeview-listener.entrypoints=websecure"
+              - "traefik.http.routers.tradeview-listener.tls.certresolver=tlsresolver"
+              - "traefik.http.services.tradeview-listener-service.loadbalancer.server.port=80"
+              - "traefik.http.routers.tradeview-listener.tls.domains[0].main=tradeview.{{base_hostname}}"
         networks:
           appnet:
             external: true

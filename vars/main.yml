@@ -1,6 +1,5 @@
 ---
 swarm_advertise_addr: "10.19.0.5"
-base_stack_name: "routing"
 base_hostname: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   31323565353764396162643638633463396138396132393765306337303232313261373639636435

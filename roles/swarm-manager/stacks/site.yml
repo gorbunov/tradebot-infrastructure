@@ -11,7 +11,7 @@
 
 - name: Deploy core stack
   docker_stack:
-    name: "{{ base_stack_name }}"
+    name: "{{ app_stack_name }}"
     with_registry_auth: true
     resolve_image: never
     compose:
