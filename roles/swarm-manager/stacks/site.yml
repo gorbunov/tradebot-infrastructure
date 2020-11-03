@@ -30,7 +30,6 @@
               - /srv/acme:/etc/traefik/acme
             networks:
               - traefiknet
-              - appnet
             deploy:
               placement:
                 constraints:
@@ -76,6 +75,4 @@
 #              mode: global
         networks:
           traefiknet:
-            external: true
-          appnet:
             external: true
